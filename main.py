@@ -34,7 +34,6 @@ Builder.load_string("""
 """)
 
 
-#EXPONENTS STEPS
 Builder.load_string("""
 <Fractions>
     id:Fractions
