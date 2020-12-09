@@ -121,6 +121,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: 200
                     padding: 10
+                    input_filter: lambda text, from_undo: text[:8 - len(a.text)] 
                     
             BoxLayout:
                 cols: 2
@@ -143,7 +144,9 @@ Builder.load_string("""
                     font_size: 125
                     size_hint_y: None
                     height: 200
-                    padding: 10          
+                    padding: 10
+                    input_filter: lambda text, from_undo: text[:8 - len(b.text)] 
+                    
             BoxLayout:
                 cols: 2
                 id: steps
@@ -262,33 +265,44 @@ class Fractions(Screen):
                     print("numer_a",numer_a)
                     if numer_a.count("(") == 1:
                         left_par = numer_a.find("(")
-                        whole = numer_a[:left_par]
+                        whole_a = numer_a[:left_par]
                         par_sign_index = numer_a.find("(")
                         numer_a = numer_a[par_sign_index+1:]
                         print("numer_a",numer_a)
-                        print("whole a",whole)
-                        numer_a = str(int(whole) * int(denom_a) + int(numer_a))
+                        print("whole a",whole_a)
+                        numer_a = str(int(whole_a) * int(denom_a) + int(numer_a))
+                        
+                        self.ids.list_of_steps.add_widget(Label(text= entry_list[0] + " = " + numer_a + "/" + denom_a ,font_size = 60, size_hint_y= None, height=100))
+                        self.layouts.append(layout)  
+                            
                 if entry_list[1].count("/") == 1:
                     frac_sign_index = entry_list[1].find("/")
                     numer_b = entry_list[1][:frac_sign_index]
                     print("numer_b",numer_b)
                     if numer_b.count("(") == 1:
                         left_par = numer_b.find("(")
-                        whole = numer_b[:left_par]
+                        whole_b = numer_b[:left_par]
                         par_sign_index = numer_b.find("(")
                         numer_b = numer_b[par_sign_index+1:]
                         print("numer_b",numer_b)
-                        print("whole b",whole)
-                        numer_b = str(int(whole) * int(denom_b) + int(numer_b))
+                        print("whole b",whole_b)
+                        numer_b = str(int(whole_b) * int(denom_b) + int(numer_b))
                         
-                self.ids.list_of_steps.add_widget(Label(text= numer_a + "/" + denom_a + " + " + numer_b + "/" + denom_b ,font_size = 60, size_hint_y= None, height=100))
-                self.layouts.append(layout)  
+                        self.ids.list_of_steps.add_widget(Label(text= entry_list[1] + " = " + numer_b + "/" + denom_b ,font_size = 60, size_hint_y= None, height=100))
+                        self.layouts.append(layout)  
+                self.ids.list_of_steps.add_widget(Label(text= "(" + str(int(denom_lcm) / int(denom_a)).replace(".0","") + ")" + numer_a + "/" + denom_a + "(" + str(int(denom_lcm) / int(denom_a)).replace(".0","") + ")" + " + " + "(" + str(int(denom_lcm) / int(denom_b)).replace(".0","") + ")" + numer_b + "/" + denom_b + "(" + str(int(denom_lcm) / int(denom_b)).replace(".0","") + ")"  + " = ",font_size = 60, size_hint_y= None, height=100))
                 numer_a = str(int(denom_lcm) / int(denom_a) * int(numer_a)).replace(".0","")
+                print("numer_a:",numer_a)
                 numer_b = str(int(denom_lcm) / int(denom_b) * int(numer_b)).replace(".0","")
+                print("numer_b:",numer_b)
                 numer_sol = str(int(numer_a) + int(numer_b)).replace(".0","") + "/" + str(denom_lcm)
-                self.ids.list_of_steps.add_widget(Label(text= numer_a + "/" + denom_lcm + " + " + numer_b + "/" + denom_lcm ,font_size = 60, size_hint_y= None, height=100))
+                print("numer_sol:",numer_sol)
+                self.ids.list_of_steps.add_widget(Label(text= numer_a + "/" + denom_lcm + " + " + numer_b + "/" + denom_lcm + " = ",font_size = 60, size_hint_y= None, height=100))
                 self.ids.list_of_steps.add_widget(Label(text= numer_sol ,font_size = 60, size_hint_y= None, height=100))
                 self.layouts.append(layout)  
+            else:
+                self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 60, size_hint_y= None, height=100))
+                self.layouts.append(layout)
         except Exception:
             self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 60, size_hint_y= None, height=100))
             self.layouts.append(layout)
@@ -300,6 +314,66 @@ class Fractions(Screen):
         try:
             print("entry",entry)
             if entry.count("/") == 2:
+                entry_list = entry.split("$")
+                print("entry_list",entry_list)
+                #a
+                if entry_list[0].count("/") == 1:
+                    frac_sign_index = entry_list[0].find("/")
+                    denom_a = entry_list[0][frac_sign_index+1:].replace(")","")
+                    print("denom_a",denom_a)
+                if entry_list[1].count("/") == 1:
+                    frac_sign_index = entry_list[1].find("/")
+                    denom_b = entry_list[1][frac_sign_index+1:].replace(")","")
+                    print("denom_b",denom_b)
+                denom_lcm = str(np.lcm(int(denom_a),int(denom_b)))
+                print("denom_lcm",denom_lcm)
+                self.ids.list_of_steps.add_widget(Label(text= "Subtract " + entry_list[0] + " - " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= "Least Common Multiple = " + denom_lcm ,font_size = 60, size_hint_y= None, height=100))
+                self.layouts.append(layout)  
+                
+                if entry_list[0].count("/") == 1:
+                    frac_sign_index = entry_list[0].find("/")
+                    numer_a = entry_list[0][:frac_sign_index]
+                    print("numer_a",numer_a)
+                    if numer_a.count("(") == 1:
+                        left_par = numer_a.find("(")
+                        whole_a = numer_a[:left_par]
+                        par_sign_index = numer_a.find("(")
+                        numer_a = numer_a[par_sign_index+1:]
+                        print("numer_a",numer_a)
+                        print("whole a",whole_a)
+                        numer_a = str(int(whole_a) * int(denom_a) + int(numer_a))
+                        self.ids.list_of_steps.add_widget(Label(text= entry_list[0] + " = " + numer_a + "/" + denom_a ,font_size = 60, size_hint_y= None, height=100))
+                        self.layouts.append(layout)  
+                            
+                if entry_list[1].count("/") == 1:
+                    frac_sign_index = entry_list[1].find("/")
+                    numer_b = entry_list[1][:frac_sign_index]
+                    print("numer_b",numer_b)
+                    if numer_b.count("(") == 1:
+                        left_par = numer_b.find("(")
+                        whole_b = numer_b[:left_par]
+                        par_sign_index = numer_b.find("(")
+                        numer_b = numer_b[par_sign_index+1:]
+                        print("numer_b",numer_b)
+                        print("whole b",whole_b)
+                        numer_b = str(int(whole_b) * int(denom_b) + int(numer_b))
+                        
+                        self.ids.list_of_steps.add_widget(Label(text= entry_list[1] + " = " + numer_b + "/" + denom_b ,font_size = 60, size_hint_y= None, height=100))
+                        self.layouts.append(layout)  
+                self.ids.list_of_steps.add_widget(Label(text= "(" + str(int(denom_lcm) / int(denom_a)).replace(".0","") + ")" + numer_a + "/" + denom_a + "(" + str(int(denom_lcm) / int(denom_a)).replace(".0","") + ")" + " - " + "(" + str(int(denom_lcm) / int(denom_b)).replace(".0","") + ")" + numer_b + "/" + denom_b + "(" + str(int(denom_lcm) / int(denom_b)).replace(".0","") + ")"  + " = ",font_size = 60, size_hint_y= None, height=100))
+                numer_a = str(int(denom_lcm) / int(denom_a) * int(numer_a)).replace(".0","")
+                print("numer_a:",numer_a)
+                numer_b = str(int(denom_lcm) / int(denom_b) * int(numer_b)).replace(".0","")
+                print("numer_b:",numer_b)
+                numer_sol = str(int(numer_a) - int(numer_b)).replace(".0","") + "/" + str(denom_lcm)
+                print("numer_sol:",numer_sol)
+                self.ids.list_of_steps.add_widget(Label(text= numer_a + "/" + denom_lcm + " - " + numer_b + "/" + denom_lcm + " = ",font_size = 60, size_hint_y= None, height=100))
+                self.ids.list_of_steps.add_widget(Label(text= numer_sol ,font_size = 60, size_hint_y= None, height=100))
+                self.layouts.append(layout)  
+            else:
+                self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 60, size_hint_y= None, height=100))
+                self.layouts.append(layout)
                 
                 
                 self.ids.list_of_steps.add_widget(Label(text= "s" ,font_size = 60, size_hint_y= None, height=100))
