@@ -1748,8 +1748,8 @@ class Fractions(Screen):
                     wf_numer = str(int(whole_b) * int(denom_b) + int(numer_b))
                     
                     Reciprocal = str(denom_b + "/" + wf_numer)
-                    Numerators = str(entry_list[0] + " x " + wf_numer)
-                    Denomenators = str("1" + " x " + denom_b)
+                    Numerators = str(entry_list[0] + " x " + denom_b)
+                    Denomenators = str("1" + " x " + wf_numer)
                     Numerators_sol = str(int(entry_list[0]) * int(wf_numer))
                     Denomenators_sol = str(int(1) * int(denom_b))
                     
