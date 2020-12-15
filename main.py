@@ -391,6 +391,7 @@ class Fractions(Screen):
                 
                 # If first frac is the F
                 if entry_list[0].count("(") == 0 and entry_list[0].count(")") == 0 and entry_list[0].count("/") == 1:
+                    print("F + W")
                     frac_sign_index = entry_list[0].find("/")
                     denom_a = entry_list[0][frac_sign_index+1:]
                     print("denom_a",denom_a)
@@ -402,8 +403,8 @@ class Fractions(Screen):
                     whole_frac = str(int(entry_list[1]) * int(lcm)) + "/" + str(lcm)
                     self.ids.list_of_steps.add_widget(Label(text= "Add: " + entry_list[0] + " + " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Convert: " + entry_list[1] + " = " + whole_frac,font_size = 60, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text= entry_list[0] + " + " + whole_frac,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Least Common Multiple = " + lcm ,font_size = 60, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= entry_list[0] + " + " + whole_frac + " = ",font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                     
                     answer = str(int(whole_frac_numer) + int(numer_a)) + "/" + str(lcm)
@@ -412,6 +413,7 @@ class Fractions(Screen):
                     
                 # If the second is the F
                 if entry_list[1].count("(") == 0 and entry_list[1].count(")") == 0 and entry_list[1].count("/") == 1:
+                    print("w + F")
                     frac_sign_index = entry_list[1].find("/")
                     denom_a = entry_list[1][frac_sign_index+1:]
                     print("denom_a",denom_a)
@@ -423,8 +425,8 @@ class Fractions(Screen):
                     whole_frac = str(int(entry_list[0]) * int(lcm)) + "/" + str(lcm)
                     self.ids.list_of_steps.add_widget(Label(text= "Add: " + entry_list[0] + " + " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Convert: " + entry_list[0] + " = " + whole_frac,font_size = 60, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text= whole_frac + " + " + entry_list[1]  ,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Least Common Multiple = " + lcm ,font_size = 60, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= whole_frac + " + " + entry_list[1] + " = "  ,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                     
                     answer = str(int(whole_frac_numer) + int(numer_a)) + "/" + str(lcm)
@@ -589,6 +591,12 @@ class Fractions(Screen):
                     print("diff",diff)
                     remainder = str(numer_sol % denom_sol)
                     print("remainder ",remainder)
+                    if int(numer_sol_list[0]) % int(numer_sol_list[1]) == 0:
+                        self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff ,font_size = 60, size_hint_y= None, height=100))
+                        self.layouts.append(layout)
+                    else:
+                        self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder) + "/" + str(denom_sol) + ")",font_size = 60, size_hint_y= None, height=100))
+                        self.layouts.append(layout)
                     if int(numer_sol_list[0]) % int(numer_sol_list[1]) == 0:
                         self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff ,font_size = 60, size_hint_y= None, height=100))
                         self.layouts.append(layout)
