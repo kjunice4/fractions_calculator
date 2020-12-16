@@ -473,6 +473,7 @@ class Fractions(Screen):
                     frac_denom = frac[frac_div_sign+1:]
                     lcm_diff = str(int(lcm) / int(frac_denom)).replace(".0","")
                     self.ids.list_of_steps.add_widget(Label(text= "(" + lcm_diff + ")" + frac + "(" + lcm_diff + ")" + " + " + whole_frac + " = ",font_size = 60, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= str(int(lcm_diff) * int(frac_numer)) + "/"  + str(int(lcm_diff) * int(frac_denom)) + " + " + whole_frac + " = ",font_size = 60, size_hint_y= None, height=100))
                     frac_numer = str(int(lcm_diff) * int(frac_numer))
                     answer = str(int(whole_numer) + int(frac_numer)) + "/" + str(lcm)
                     self.ids.list_of_steps.add_widget(Label(text= answer ,font_size = 60, size_hint_y= None, height=100))
@@ -513,6 +514,7 @@ class Fractions(Screen):
                     frac_denom = frac[frac_div_sign+1:]
                     lcm_diff = str(int(lcm) / int(frac_denom)).replace(".0","")
                     self.ids.list_of_steps.add_widget(Label(text= whole_frac + " + " + "(" + lcm_diff + ")" + frac + "(" + lcm_diff + ")" + " = ",font_size = 60, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text=   whole_frac + " + " + str(int(lcm_diff) * int(frac_numer)) + "/" + str(int(lcm_diff) * int(frac_denom))  + " = ",font_size = 60, size_hint_y= None, height=100))
                     frac_numer = str(int(lcm_diff) * int(frac_numer))
                     answer = str(int(whole_numer) + int(frac_numer)) + "/" + str(lcm)
                     self.ids.list_of_steps.add_widget(Label(text= answer ,font_size = 60, size_hint_y= None, height=100))
@@ -1319,7 +1321,7 @@ class Fractions(Screen):
                     numer_a = entry_list[0][left_par+1:frac_sign_index]
                     print("numer_a",numer_a)
                     
-                    wf = str(int(whole_a) * int(denom_a) + int(numer_a)) + "/" + str(1)
+                    wf = str(int(whole_a) * int(denom_a) + int(numer_a)) + "/" + str(denom_a)
                     wf_numer = str(int(whole_a) * int(denom_a) + int(numer_a))
                     
                     Numerators = str(wf_numer + " x " + entry_list[1])
@@ -1351,7 +1353,7 @@ class Fractions(Screen):
                     numer_a = entry_list[1][left_par+1:frac_sign_index]
                     print("numer_a",numer_a)
                     
-                    wf = str(int(whole_a) * int(denom_a) + int(numer_a)) + "/" + str(1)
+                    wf = str(int(whole_a) * int(denom_a) + int(numer_a)) + "/" + str(denom_a)
                     wf_numer = str(int(whole_a) * int(denom_a) + int(numer_a))
                     
                     Numerators = str(entry_list[0] + " x " + wf_numer)
