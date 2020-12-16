@@ -457,6 +457,7 @@ class Fractions(Screen):
                     denom_b = entry_list[1][frac_sign_two+1:]
                     lcm = str(np.lcm(int(denom_a),int(denom_b)))
                     print("lcm",lcm)
+                    
                     self.ids.list_of_steps.add_widget(Label(text= "Add: " + entry_list[0] + " + " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Convert: " + entry_list[0] + " = " + frac ,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= frac + " + " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
@@ -469,7 +470,10 @@ class Fractions(Screen):
                     print("whole_frac",whole_frac)
                     frac_div_sign = frac.find("/")
                     frac_numer = frac[:frac_div_sign]
-                    self.ids.list_of_steps.add_widget(Label(text= frac + " + " + whole_frac + " = ",font_size = 60, size_hint_y= None, height=100))
+                    frac_denom = frac[frac_div_sign+1:]
+                    lcm_diff = str(int(lcm) / int(frac_denom)).replace(".0","")
+                    self.ids.list_of_steps.add_widget(Label(text= "(" + lcm_diff + ")" + frac + "(" + lcm_diff + ")" + " + " + whole_frac + " = ",font_size = 60, size_hint_y= None, height=100))
+                    frac_numer = str(int(lcm_diff) * int(frac_numer))
                     answer = str(int(whole_numer) + int(frac_numer)) + "/" + str(lcm)
                     self.ids.list_of_steps.add_widget(Label(text= answer ,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
@@ -506,7 +510,10 @@ class Fractions(Screen):
                     print("whole_frac",whole_frac)
                     frac_div_sign = frac.find("/")
                     frac_numer = frac[:frac_div_sign]
-                    self.ids.list_of_steps.add_widget(Label(text= whole_frac + " + " + frac + " = ",font_size = 60, size_hint_y= None, height=100))
+                    frac_denom = frac[frac_div_sign+1:]
+                    lcm_diff = str(int(lcm) / int(frac_denom)).replace(".0","")
+                    self.ids.list_of_steps.add_widget(Label(text= whole_frac + " + " + "(" + lcm_diff + ")" + frac + "(" + lcm_diff + ")" + " = ",font_size = 60, size_hint_y= None, height=100))
+                    frac_numer = str(int(lcm_diff) * int(frac_numer))
                     answer = str(int(whole_numer) + int(frac_numer)) + "/" + str(lcm)
                     self.ids.list_of_steps.add_widget(Label(text= answer ,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
@@ -1318,7 +1325,7 @@ class Fractions(Screen):
                     Numerators = str(wf_numer + " x " + entry_list[1])
                     Denomenators = str(denom_a + " x " + str(1))
                     Numerators_sol = str(int(wf_numer) * int(entry_list[1]))
-                    Denomenators_sol = str(int(denom_a) * int(denom_a))
+                    Denomenators_sol = str(int(denom_a) * int(1))
                     
                     self.ids.list_of_steps.add_widget(Label(text= "Multiply: " + entry_list[0] + " x " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Convert: " + entry_list[0] + " = " + wf,font_size = 60, size_hint_y= None, height=100))
@@ -1350,7 +1357,7 @@ class Fractions(Screen):
                     Numerators = str(entry_list[0] + " x " + wf_numer)
                     Denomenators = str(denom_a + " x " + str(1))
                     Numerators_sol = str(int(wf_numer) * int(entry_list[0]))
-                    Denomenators_sol = str(int(denom_a) * int(denom_a))
+                    Denomenators_sol = str(int(denom_a) * int(1))
                     
                     self.ids.list_of_steps.add_widget(Label(text= "Multiply: " + entry_list[0] + " x " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Convert: " + entry_list[1] + " = " + wf,font_size = 60, size_hint_y= None, height=100))
