@@ -592,43 +592,25 @@ class Fractions(Screen):
                     remainder = str(numer_sol % denom_sol)
                     print("remainder ",remainder)
                     
-                    if int(numer_sol_list[0]) % int(numer_sol_list[1]) == 0:
+                    if int(numer_sol_list[0]) % int(numer_sol_list[1]) == 0 and int(remainder) == 0:
                         self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff ,font_size = 60, size_hint_y= None, height=100))
                         self.layouts.append(layout)
-                        if int(denom_sol) % 2 == 0 and int(remainder) % 2 == 0:
-                            remainder = int(remainder) / 2
-                            print("remainder reduced further",remainder)
-                            denom_sol = int(denom_sol) / 2
-                            self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
-                            self.layouts.append(layout)
-                        elif int(denom_sol) % 3 == 0 and int(remainder) % 3 == 0:
-                            remainder = int(remainder) / 3
-                            print("remainder reduced further",remainder)
-                            denom_sol = int(denom_sol) / 3
-                            self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
-                            self.layouts.append(layout)
-                        elif int(denom_sol) % 5 == 0 and int(remainder) % 5 == 0:
-                            remainder = int(remainder) / 5
-                            print("remainder reduced further",remainder)
-                            denom_sol = int(denom_sol) / 5
-                            self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
-                            self.layouts.append(layout)
                     else:
                         self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                         self.layouts.append(layout)
-                        if int(remainder) % 2 == 0 and int(denom_sol) % 2 == 0:
+                        if int(remainder) % 2 == 0 and int(denom_sol) % 2 == 0 and int(remainder) != 0:
                             remainder = int(remainder) / 2
                             print("remainder reduced further",remainder)
                             denom_sol = int(denom_sol) / 2
                             self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                             self.layouts.append(layout)
-                        elif int(denom_sol) % 3 == 0 and int(remainder) % 3 == 0:
+                        elif int(denom_sol) % 3 == 0 and int(remainder) % 3 == 0 and int(remainder) != 0:
                             remainder = int(remainder) / 3
                             print("remainder reduced further",remainder)
                             denom_sol = int(denom_sol) / 3
                             self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                             self.layouts.append(layout)
-                        elif int(denom_sol) % 5 == 0 and int(remainder) % 5 == 0:
+                        elif int(denom_sol) % 5 == 0 and int(remainder) % 5 == 0 and int(remainder) != 0:
                             remainder = int(remainder) / 5
                             print("remainder reduced further",remainder)
                             denom_sol = int(denom_sol) / 5
@@ -1032,24 +1014,24 @@ class Fractions(Screen):
                     print("diff",diff)
                     remainder = str(numer_sol % denom_sol)
                     print("remainder ",remainder)
-                    if int(numer_sol_list[0]) % int(numer_sol_list[1]) == 0:
+                    if int(numer_sol_list[0]) % int(numer_sol_list[1]) == 0 and int(remainder) == 0:
                         if num > 0:
                             diff = "-" + diff
                         self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff ,font_size = 60, size_hint_y= None, height=100))
                         self.layouts.append(layout)
-                        if int(remainder) % 2 == 0 and int(denom_sol) % 2 == 0:
+                        if int(remainder) % 2 == 0 and int(denom_sol) % 2 == 0 and int(remainder) != 0:
                             remainder = int(remainder) / 2
                             print("remainder reduced further",remainder)
                             denom_sol = int(denom_sol) / 2
                             self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                             self.layouts.append(layout)
-                        elif int(denom_sol) % 3 == 0 and int(remainder) % 3 == 0:
+                        elif int(denom_sol) % 3 == 0 and int(remainder) % 3 == 0 and int(remainder) != 0:
                             remainder = int(remainder) / 3
                             print("remainder reduced further",remainder)
                             denom_sol = int(denom_sol) / 3
                             self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                             self.layouts.append(layout)
-                        elif int(denom_sol) % 5 == 0 and int(remainder) % 5 == 0:
+                        elif int(denom_sol) % 5 == 0 and int(remainder) % 5 == 0 and int(remainder) != 0:
                             remainder = int(remainder) / 5
                             print("remainder reduced further",remainder)
                             denom_sol = int(denom_sol) / 5
@@ -1271,24 +1253,19 @@ class Fractions(Screen):
                     print("denom_a",denom_a)
                     numer_a = entry_list[0][:frac_sign_index]
                     print("numer_a",numer_a)
-                    lcm = denom_a
-                    print("lcm",lcm)
-                    whole_frac_numer = str(int(entry_list[1]) * int(lcm))
-                    whole_frac = str(int(entry_list[1]) * int(lcm)) + "/" + str(lcm)
-                    
-                    Numerators = str(numer_a + " x " + whole_frac_numer)
-                    Denomenators = str(denom_a + " x " + lcm)
-                    Numerators_sol = str(int(numer_a) * int(whole_frac_numer))
-                    Denomenators_sol = str(int(denom_a) * int(denom_a))
+
+                    Numerators = str(numer_a + " x " + entry_list[1])
+                    Denomenators = str(denom_a + " x " + str(1))
+                    Numerators_sol = str(int(numer_a) * int(entry_list[1]))
+                    Denomenators_sol = str(int(denom_a) * int(1))
                     
                     self.ids.list_of_steps.add_widget(Label(text= "Multiply: " + entry_list[0] + " x " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text= "Convert: " + entry_list[1] + " = " + whole_frac,font_size = 60, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text= entry_list[0] + " x " + whole_frac + " = ",font_size = 60, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= entry_list[0] + " x " + entry_list[1]+ "/1" + " = ",font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Numerators: " + Numerators + " = " + Numerators_sol,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Denomenators: " + Denomenators + " = " + Denomenators_sol,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                     
-                    answer = str(int(numer_a) * int(whole_frac_numer)) + "/" + str(int(denom_a) * int(lcm))
+                    answer = str(int(numer_a) * int(entry_list[1])) + "/" + str(int(denom_a) * int(1))
                     self.ids.list_of_steps.add_widget(Label(text= answer ,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                     
@@ -1300,26 +1277,19 @@ class Fractions(Screen):
                     print("denom_a",denom_a)
                     numer_a = entry_list[1][:frac_sign_index]
                     print("numer_a",numer_a)
-                    lcm = denom_a
-                    print("lcm",lcm)
-                    whole_frac_numer = str(int(entry_list[0]) * int(lcm))
-                    print("whole_frac_numer",whole_frac_numer)
-                    whole_frac = str(int(entry_list[0]) * int(lcm)) + "/" + str(lcm)
-                    print("whole_frac",whole_frac)
                     
-                    Numerators = str(whole_frac_numer + " x " + numer_a)
-                    Denomenators = str(denom_a + " x " + lcm)
-                    Numerators_sol = str(int(numer_a) * int(whole_frac_numer))
-                    Denomenators_sol = str(int(denom_a) * int(denom_a))
+                    Numerators = str(entry_list[0] + " x " + numer_a)
+                    Denomenators = str(denom_a + " x " + str(1))
+                    Numerators_sol = str(int(numer_a) * int(entry_list[0]))
+                    Denomenators_sol = str(int(denom_a) * int(1))
                     
                     self.ids.list_of_steps.add_widget(Label(text= "Multiply: " + entry_list[0] + " x " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text= "Convert: " + entry_list[0] + " = " + whole_frac,font_size = 60, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text= whole_frac + " x " + entry_list[1] + " = " ,font_size = 60, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= entry_list[0] + "/1" + " x " + entry_list[1] + " = " ,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Numerators: " + Numerators +" = " + Numerators_sol,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Denomenators: " + Denomenators + " = " + Denomenators_sol,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                     
-                    answer =  str(int(numer_a) * int(whole_frac_numer)) + "/" + str(int(lcm) * int(denom_a))
+                    answer =  str(int(numer_a) * int(entry_list[0])) + "/" + str(int(1) * int(denom_a))
                     self.ids.list_of_steps.add_widget(Label(text= answer ,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                     
@@ -1341,30 +1311,23 @@ class Fractions(Screen):
                     print("denom_a",denom_a)
                     numer_a = entry_list[0][left_par+1:frac_sign_index]
                     print("numer_a",numer_a)
-                    lcm = denom_a
-                    print("lcm",lcm)
-                    whole_frac_numer = str(int(entry_list[1]) * int(lcm))
-                    print("whole_frac_numer",whole_frac_numer)
-                    whole_frac = str(int(entry_list[1]) * int(lcm)) + "/" + str(lcm)
-                    print("whole_frac",whole_frac)
                     
-                    wf = str(int(whole_a) * int(denom_a) + int(numer_a)) + "/" + str(lcm)
+                    wf = str(int(whole_a) * int(denom_a) + int(numer_a)) + "/" + str(1)
                     wf_numer = str(int(whole_a) * int(denom_a) + int(numer_a))
                     
-                    Numerators = str(wf_numer + " x " + whole_frac_numer)
-                    Denomenators = str(denom_a + " x " + lcm)
-                    Numerators_sol = str(int(wf_numer) * int(whole_frac_numer))
+                    Numerators = str(wf_numer + " x " + entry_list[1])
+                    Denomenators = str(denom_a + " x " + str(1))
+                    Numerators_sol = str(int(wf_numer) * int(entry_list[1]))
                     Denomenators_sol = str(int(denom_a) * int(denom_a))
                     
                     self.ids.list_of_steps.add_widget(Label(text= "Multiply: " + entry_list[0] + " x " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Convert: " + entry_list[0] + " = " + wf,font_size = 60, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text= "Convert: " + entry_list[1] + " = " + whole_frac,font_size = 60, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text= wf + " x " + whole_frac + " = ",font_size = 60, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= wf + " x " + entry_list[1] + "/1" + " = ",font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Numerators: " + Numerators + " = " + Numerators_sol,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Denomenators: " + Denomenators + " = " + Denomenators_sol,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                     
-                    answer = str(int(wf_numer) * int(whole_frac_numer)) + "/" + str(int(denom_a) * int(lcm))
+                    answer = str(int(wf_numer) * int(entry_list[1])) + "/" + str(int(denom_a) * int(1))
                     self.ids.list_of_steps.add_widget(Label(text= answer ,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                     
@@ -1380,30 +1343,23 @@ class Fractions(Screen):
                     print("denom_a",denom_a)
                     numer_a = entry_list[1][left_par+1:frac_sign_index]
                     print("numer_a",numer_a)
-                    lcm = denom_a
-                    print("lcm",lcm)
-                    whole_frac_numer = str(int(entry_list[0]) * int(lcm))
-                    print("whole_frac_numer",whole_frac_numer)
-                    whole_frac = str(int(entry_list[0]) * int(lcm)) + "/" + str(lcm)
-                    print("whole_frac",whole_frac)
                     
-                    wf = str(int(whole_a) * int(denom_a) + int(numer_a)) + "/" + str(lcm)
+                    wf = str(int(whole_a) * int(denom_a) + int(numer_a)) + "/" + str(1)
                     wf_numer = str(int(whole_a) * int(denom_a) + int(numer_a))
                     
-                    Numerators = str(whole_frac_numer + " x " + wf_numer)
-                    Denomenators = str(denom_a + " x " + lcm)
-                    Numerators_sol = str(int(wf_numer) * int(whole_frac_numer))
+                    Numerators = str(entry_list[0] + " x " + wf_numer)
+                    Denomenators = str(denom_a + " x " + str(1))
+                    Numerators_sol = str(int(wf_numer) * int(entry_list[0]))
                     Denomenators_sol = str(int(denom_a) * int(denom_a))
                     
                     self.ids.list_of_steps.add_widget(Label(text= "Multiply: " + entry_list[0] + " x " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text= "Convert: " + entry_list[0] + " = " + whole_frac,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Convert: " + entry_list[1] + " = " + wf,font_size = 60, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text= whole_frac + " x " + wf + " = " ,font_size = 60, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= entry_list[0] + " x " + wf + " = " ,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Numerators: " + Numerators +" = " + Numerators_sol,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Denomenators: " + Denomenators + " = " + Denomenators_sol,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                     
-                    answer =  str(int(wf_numer) * int(whole_frac_numer)) + "/" + str(int(lcm) * int(denom_a))
+                    answer =  str(int(wf_numer) * int(entry_list[0])) + "/" + str(int(1) * int(denom_a))
                     self.ids.list_of_steps.add_widget(Label(text= answer ,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                     
@@ -1485,45 +1441,28 @@ class Fractions(Screen):
                     remainder = str(numer_sol % denom_sol)
                     print("remainder ",remainder)
                     
-                    if int(numer_sol_list[0]) % int(numer_sol_list[1]) == 0:
+                    if int(numer_sol_list[0]) % int(numer_sol_list[1]) == 0 and int(remainder) == 0:
                         self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff ,font_size = 60, size_hint_y= None, height=100))
                         self.layouts.append(layout)
-                        if int(denom_sol) % 2 == 0 and int(remainder) % 2 == 0:
-                            remainder = int(remainder) / 2
-                            print("remainder reduced further",remainder)
-                            denom_sol = int(denom_sol) / 2
-                            self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
-                            self.layouts.append(layout)
-                        elif int(denom_sol) % 3 == 0 and int(remainder) % 3 == 0:
-                            remainder = int(remainder) / 3
-                            print("remainder reduced further",remainder)
-                            denom_sol = int(denom_sol) / 3
-                            self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
-                            self.layouts.append(layout)
-                        elif int(denom_sol) % 5 == 0 and int(remainder) % 5 == 0:
-                            remainder = int(remainder) / 5
-                            print("remainder reduced further",remainder)
-                            denom_sol = int(denom_sol) / 5
-                            self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
-                            self.layouts.append(layout)
+                        
                     else:
                         self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                         self.layouts.append(layout)
-                        if int(remainder) % 2 == 0 and int(denom_sol) % 2 == 0:
+                        if int(remainder) % 2 == 0 and int(denom_sol) % 2 == 0 and int(remainder) != 0:
                             remainder = int(remainder) / 2
-                            print("remainder reduced further",remainder)
+                            print("remainder reduced further 2",remainder)
                             denom_sol = int(denom_sol) / 2
                             self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                             self.layouts.append(layout)
-                        elif int(denom_sol) % 3 == 0 and int(remainder) % 3 == 0:
+                        elif int(denom_sol) % 3 == 0 and int(remainder) % 3 == 0 and int(remainder) != 0:
                             remainder = int(remainder) / 3
-                            print("remainder reduced further",remainder)
+                            print("remainder reduced further 3",remainder)
                             denom_sol = int(denom_sol) / 3
                             self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                             self.layouts.append(layout)
-                        elif int(denom_sol) % 5 == 0 and int(remainder) % 5 == 0:
+                        elif int(denom_sol) % 5 == 0 and int(remainder) % 5 == 0 and int(remainder) != 0:
                             remainder = int(remainder) / 5
-                            print("remainder reduced further",remainder)
+                            print("remainder reduced further 5",remainder)
                             denom_sol = int(denom_sol) / 5
                             self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                             self.layouts.append(layout)
@@ -1927,43 +1866,26 @@ class Fractions(Screen):
                     remainder = str(numer_sol % denom_sol)
                     print("remainder ",remainder)
                     
-                    if int(numer_sol_list[0]) % int(numer_sol_list[1]) == 0:
+                    if int(numer_sol_list[0]) % int(numer_sol_list[1]) == 0 and int(remainder) == 0:
                         self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff ,font_size = 60, size_hint_y= None, height=100))
                         self.layouts.append(layout)
-                        if int(denom_sol) % 2 == 0 and int(remainder) % 2 == 0:
-                            remainder = int(remainder) / 2
-                            print("remainder reduced further",remainder)
-                            denom_sol = int(denom_sol) / 2
-                            self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
-                            self.layouts.append(layout)
-                        elif int(denom_sol) % 3 == 0 and int(remainder) % 3 == 0:
-                            remainder = int(remainder) / 3
-                            print("remainder reduced further",remainder)
-                            denom_sol = int(denom_sol) / 3
-                            self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
-                            self.layouts.append(layout)
-                        elif int(denom_sol) % 5 == 0 and int(remainder) % 5 == 0:
-                            remainder = int(remainder) / 5
-                            print("remainder reduced further",remainder)
-                            denom_sol = int(denom_sol) / 5
-                            self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
-                            self.layouts.append(layout)
+                        
                     else:
                         self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                         self.layouts.append(layout)
-                        if int(remainder) % 2 == 0 and int(denom_sol) % 2 == 0:
+                        if int(remainder) % 2 == 0 and int(denom_sol) % 2 == 0 and int(remainder) != 0:
                             remainder = int(remainder) / 2
                             print("remainder reduced further",remainder)
                             denom_sol = int(denom_sol) / 2
                             self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                             self.layouts.append(layout)
-                        elif int(denom_sol) % 3 == 0 and int(remainder) % 3 == 0:
+                        elif int(denom_sol) % 3 == 0 and int(remainder) % 3 == 0 and int(remainder) != 0:
                             remainder = int(remainder) / 3
                             print("remainder reduced further",remainder)
                             denom_sol = int(denom_sol) / 3
                             self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                             self.layouts.append(layout)
-                        elif int(denom_sol) % 5 == 0 and int(remainder) % 5 == 0:
+                        elif int(denom_sol) % 5 == 0 and int(remainder) % 5 == 0 and int(remainder) != 0:
                             remainder = int(remainder) / 5
                             print("remainder reduced further",remainder)
                             denom_sol = int(denom_sol) / 5
