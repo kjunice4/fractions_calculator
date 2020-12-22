@@ -1006,13 +1006,9 @@ class Fractions(Screen):
                 self.ids.list_of_steps.add_widget(Label(text= sol ,font_size = 60, size_hint_y= None, height=100))
                 self.layouts.append(layout)
  
-            #FRACTION ANSWER REDUCER               
+            #FRACTION ANSWER REDUCER   
             print("trying to reduce")    
             if answer != "" and sol == "":
-                num = 0
-                if answer.count("-") > 0:
-                    answer = answer.replace("-","")
-                    num = 1
                 numer_sol_list = str(answer).split("/")
                 print("numer_sol_list",numer_sol_list)
                 if int(numer_sol_list[0]) > int(numer_sol_list[1]):
@@ -1027,8 +1023,6 @@ class Fractions(Screen):
                     remainder = str(numer_sol % denom_sol)
                     print("remainder ",remainder)
                     if int(numer_sol_list[0]) % int(numer_sol_list[1]) == 0 and int(remainder) == 0:
-                        if num > 0:
-                            diff = "-" + diff
                         self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff ,font_size = 60, size_hint_y= None, height=100))
                         self.layouts.append(layout)
                         if int(remainder) % 2 == 0 and int(denom_sol) % 2 == 0 and int(remainder) != 0:
@@ -1050,8 +1044,6 @@ class Fractions(Screen):
                             self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                             self.layouts.append(layout)
                     else:
-                        if num > 0:
-                            diff = "-" + diff
                         self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder) + "/" + str(denom_sol) + ")",font_size = 60, size_hint_y= None, height=100))
                         self.layouts.append(layout)
                         if int(remainder) % 2 == 0 and int(denom_sol) % 2 == 0:
@@ -1083,8 +1075,7 @@ class Fractions(Screen):
                         print("numer_sol_list[0]",numer_sol_list[0])
                         numer_sol_list[1] = int(numer_sol_list[1]) / 2
                         print("numer_sol_list[1]",numer_sol_list[1])
-                    if num > 0:
-                        answer = "-" + answer
+                    
                     self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ str(numer_sol_list[0]).replace(".0","") + "/" + str(numer_sol_list[1]).replace(".0","") ,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                 elif int(numer_sol_list[1]) % 3 == 0 and int(numer_sol_list[0]) % 3 == 0 and int(numer_sol_list[1]) != int(numer_sol_list[0]) and int(numer_sol_list[0]) != 0:
@@ -1094,8 +1085,6 @@ class Fractions(Screen):
                         print("numer_sol_list[0]",numer_sol_list[0])
                         numer_sol_list[1] = int(numer_sol_list[1]) / 3
                         print("numer_sol_list[1]",numer_sol_list[1])
-                    if num > 0:
-                        answer = "-" + answer
                     self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ str(numer_sol_list[0]).replace(".0","") + "/" + str(numer_sol_list[1]).replace(".0","") ,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                 elif int(numer_sol_list[1]) % 5 == 0 and int(numer_sol_list[0]) % 5 == 0 and int(numer_sol_list[1]) != int(numer_sol_list[0]) and int(numer_sol_list[0]) != 0:
@@ -1105,23 +1094,15 @@ class Fractions(Screen):
                         print("numer_sol_list[0]",numer_sol_list[0])
                         numer_sol_list[1] = int(numer_sol_list[1]) / 5
                         print("numer_sol_list[1]",numer_sol_list[1])
-                    if num > 0:
-                        answer = "-" + answer
-                    self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ str(numer_sol_list[0]).replace(".0","") + "/" + str(numer_sol_list[1]).replace(".0","") ,font_size = 60, size_hint_y= None, height=100))
-                    self.layouts.append(layout)
-                    
+
                 elif int(numer_sol_list[1]) == int(numer_sol_list[0]) and int(numer_sol_list[0]) != 0:
-                   answer = str(int(numer_sol_list[1]) / int(numer_sol_list[0])).replace(".0","")
-                   self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+answer  ,font_size = 60, size_hint_y= None, height=100))
-                   self.layouts.append(layout)  
+                    answer = str(int(numer_sol_list[1]) / int(numer_sol_list[0])).replace(".0","")
+                    self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ answer  ,font_size = 60, size_hint_y= None, height=100))
+                    self.layouts.append(layout)
                 
                 elif int(numer_sol_list[0]) == 0:
                     self.ids.list_of_steps.add_widget(Label(text="Reduces to: 0"  ,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)  
-                
-                if num > 0:
-                    answer = "-" + answer
-                    print("answer",answer)
                     
         except Exception:
             self.ids.list_of_steps.add_widget(Label(text= "Invalid Input" ,font_size = 60, size_hint_y= None, height=100))
