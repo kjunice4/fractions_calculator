@@ -1182,9 +1182,9 @@ class Fractions(Screen):
                     Denomenators = str(denom_a + " x " + denom_b)
                     D_sol = str(int(denom_a) * int(denom_b))
 
-                    self.ids.list_of_steps.add_widget(Label(text= "Multiply: " + entry_list[0] + " * " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= "Multiply: " + entry_list[0] + " x " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Convert: " + entry_list[0] + " = " + frac ,font_size = 60, size_hint_y= None, height=100))
-                    self.ids.list_of_steps.add_widget(Label(text= frac + " * " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= frac + " x " + entry_list[1] ,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Numerators: " + Numerators + " = " + N_sol,font_size = 60, size_hint_y= None, height=100))
                     self.ids.list_of_steps.add_widget(Label(text= "Denomenators: " + Denomenators + " = " + D_sol,font_size = 60, size_hint_y= None, height=100))
                     self.layouts.append(layout)
