@@ -371,7 +371,7 @@ class Fractions(Screen):
                         print()
                         diff_a = str(int(lcm) / int(denom_a)).replace(".0","")
                         diff_b = str(int(lcm) / int(denom_b)).replace(".0","")
-                        self.ids.list_of_steps.add_widget(Label(text= "(" + diff_b + ")" + wf + "(" + diff_b + ")" + " + " + "(" + diff_a + ")" + entry_list[0] + "(" + diff_a + ")" + " = ",font_size = 60, size_hint_y= None, height=100))
+                        self.ids.list_of_steps.add_widget(Label(text= "(" + diff_a + ")" + entry_list[0] + "(" + diff_a + ")" + " + " + "(" + diff_b + ")" + wf + "(" + diff_b + ")" + " = ",font_size = 60, size_hint_y= None, height=100))
                         self.ids.list_of_steps.add_widget(Label(text= str(int(diff_a) * int(numer_a)).replace(".0","") + "/" + str(int(diff_a) * int(denom_a)).replace(".0","") + " + " + str(int(diff_b) * int(numer_b)).replace(".0","") + "/" + str(int(diff_b) * int(denom_b)).replace(".0","") + " = ",font_size = 60, size_hint_y= None, height=100))                        
                         numer_add = str(int(diff_a) * int(numer_a) + int(diff_b) * int(numer_b))
                         answer = numer_add + "/" + str(lcm) 
