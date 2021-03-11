@@ -30,14 +30,12 @@ Builder.load_string("""
             on_release:
                 app.root.current = "Fractions"
                 root.manager.transition.direction = "left" 
-
 """)
 
 Builder.load_string("""
 <Fractions>
     id:Fractions
     name:"Fractions"
-
     ScrollView:
         name: "Scroll"
         do_scroll_x: False
@@ -66,7 +64,6 @@ Builder.load_string("""
                 width:300
                 size_hint_y: None
                 height: self.minimum_height 
-
                 Button:
                     text: "Clear Entry"   
                     font_size: 75
@@ -1852,7 +1849,13 @@ class Fractions(Screen):
             if answer != "" and sol == "":
                 numer_sol_list = str(answer).split("/")
                 print("numer_sol_list",numer_sol_list)
-                if int(numer_sol_list[0]) > int(numer_sol_list[1]):
+                
+                if int(numer_sol_list[1]) == 0:
+                    print("Undefined")
+                    self.ids.list_of_steps.add_widget(Label(text="Undefined" ,font_size = 60, size_hint_y= None, height=100))
+                    self.layouts.append(layout)
+                
+                elif int(numer_sol_list[0]) > int(numer_sol_list[1]):
                     denom_sol = int(numer_sol_list[1])
                     numer_sol = int(numer_sol_list[0])
                     diff = numer_sol / denom_sol
@@ -1891,7 +1894,7 @@ class Fractions(Screen):
                                 denom_sol = int(denom_sol) / 5
                                 self.ids.list_of_steps.add_widget(Label(text="Reduces to: "+ diff + "(" + str(remainder).replace(".0","") + "/" + str(denom_sol).replace(".0","") + ")",font_size = 60, size_hint_y= None, height=100))
                                 self.layouts.append(layout)
-                        
+                                
                 elif int(numer_sol_list[1]) % 2 == 0 and int(numer_sol_list[0]) % 2 == 0 and int(numer_sol_list[1]) != int(numer_sol_list[0]) and int(numer_sol_list[0]) != 0:
                     print("Module 2")
                     while int(numer_sol_list[1]) % 2 == 0 and int(numer_sol_list[0]) % 2 == 0:
