@@ -101,22 +101,15 @@ Builder.load_string("""
                 height: self.minimum_height 
                 padding: 5,5         
         
-                Label:
-                    font_size: 75
-                    size_hint_y: None
-                    height: 200
-                    padding: 10, 10
-                    text: "Fraction 1 ="
-                                                        
                 TextInput:
                     id: a
                     text: a.text
+                    hint_text: "Fraction 1:"
                     multiline: False
                     font_size: 125
                     size_hint_y: None
                     height: 200
                     padding: 10
-                    input_filter: lambda text, from_undo: text[:10 - len(a.text)] 
                     
             BoxLayout:
                 cols: 2
@@ -124,23 +117,16 @@ Builder.load_string("""
                 size_hint_y: None
                 height: self.minimum_height 
                 padding: 5,5        
-        
-                Label:
-                    font_size: 75
-                    size_hint_y: None
-                    height: 200
-                    padding: 10, 10
-                    text: "Fraction 2 ="
                                                     
                 TextInput:
                     id: b
                     text: b.text
+                    hint_text:  "Fraction 2:"
                     multiline: False
                     font_size: 125
                     size_hint_y: None
                     height: 200
                     padding: 10
-                    input_filter: lambda text, from_undo: text[:10 - len(b.text)] 
                     
             BoxLayout:
                 cols: 2
