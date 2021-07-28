@@ -50,6 +50,13 @@ Builder.load_string("""
             width:200
             height: self.minimum_height
             
+            Label:
+                font_size: 75
+                size_hint_y: None
+                height: 200
+                padding: 10, 10
+                text: "Menu"
+            
             Button:
                 text: "Fractions Steps Calculator"   
                 font_size: 75
