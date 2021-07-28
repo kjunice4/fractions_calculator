@@ -18,7 +18,7 @@ Builder.load_string("""
         Button:
             background_normal: "KSquared_Logo.png"
             on_release:
-                app.root.current = "Fractions"
+                app.root.current = "Menu"
                 root.manager.transition.direction = "left" 
                 
         Button:
@@ -28,10 +28,70 @@ Builder.load_string("""
             height: 200
             text: "KSquared Fraction Steps Calculator"
             on_release:
-                app.root.current = "Fractions"
+                app.root.current = "Menu"
                 root.manager.transition.direction = "left" 
 """)
-
+# Menu
+Builder.load_string("""
+<Menu>
+    id:Menu
+    name:"Menu"
+    
+    ScrollView:
+        name: "Scroll"
+        do_scroll_x: False
+        do_scroll_y: True
+        
+        GridLayout:
+            cols: 1
+            padding:10
+            spacing:10
+            size_hint: 1, None
+            width:200
+            height: self.minimum_height
+            
+            Button:
+                text: "Fractions Steps Calculator"   
+                font_size: 75
+                background_color: 0, 0 , 1 , 1
+                size_hint_y: None
+                height: 200
+                padding: 10, 10
+                on_release:
+                    app.root.current = "Fractions"
+                    root.manager.transition.direction = "left" 
+                    
+            Button:
+                font_size: 75
+                background_color: 0, 0 , 0 , 1
+                size_hint_y: None
+                height: 400
+                text: "Visit KSquared,LLC"
+                on_release:
+                    import webbrowser
+                    webbrowser.open('https://kevinjunice.wixsite.com/ksquaredllc')
+            Button:
+                font_size: 75
+                background_color: 0, 0 , 0 , 1
+                size_hint_y: None
+                height: 400
+                text: "Other apps from KSquared,LLC"
+                on_release:
+                    import webbrowser
+                    webbrowser.open('https://kevinjunice.wixsite.com/ksquaredllc/subscribe')   
+                
+            Button:
+                font_size: 75
+                background_color: 0, 0 , 0 , 1
+                size_hint_y: None
+                height: 400
+                text: "Donate to KSquared,LLC"
+                on_release:
+                    import webbrowser
+                    webbrowser.open('https://kevinjunice.wixsite.com/ksquaredllc/about-ksquared')
+            
+""")
+# Fractions Calculator
 Builder.load_string("""
 <Fractions>
     id:Fractions
@@ -64,15 +124,18 @@ Builder.load_string("""
                 width:300
                 size_hint_y: None
                 height: self.minimum_height 
+                
                 Button:
-                    text: "Clear Entry"   
+                    text: "Menu"   
                     font_size: 75
                     size_hint_y: None
                     height: 200
                     padding: 10, 10
+                    background_color: 0, 0 , 1 , 1
                     on_release:
-                        a.text = ""
-                        b.text = ""
+                        app.root.current = "Menu"
+                        root.manager.transition.direction = "right" 
+                        
                         
                 Button:
                     id: steps
@@ -1928,9 +1991,14 @@ class Fractions(Screen):
 class Homepage(Screen):
     pass            
            
+
+class Menu(Screen):
+    pass
+
 sm = ScreenManager()
 sm.add_widget(Homepage(name="Homepage"))
-sm.add_widget(Fractions(name="Fractions"))     
+sm.add_widget(Menu(name="Menu"))   
+sm.add_widget(Fractions(name="Fractions"))    
 sm.current = "Homepage"   
 
 
