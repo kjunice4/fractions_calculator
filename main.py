@@ -20,13 +20,23 @@ Builder.load_string("""
             on_release:
                 app.root.current = "Menu"
                 root.manager.transition.direction = "left" 
-                
+        
         Button:
-            font_size: 55
+            font_size: 60
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
-            text: "KSquared Fraction Steps Calculator"
+            text: "Fractions Calculator"
+            on_release:
+                app.root.current = "Menu"
+                root.manager.transition.direction = "left" 
+                
+        Button:
+            font_size: 60
+            background_color: 0, 0 , 0 , 1
+            size_hint_y: None
+            height: 200
+            text: "KSquared-math,LLC ©"
             on_release:
                 app.root.current = "Menu"
                 root.manager.transition.direction = "left" 
@@ -70,7 +80,6 @@ Builder.load_string("""
                     
             Button:
                 font_size: 75
-                background_color: 0, 0 , 0 , 1
                 size_hint_y: None
                 height: 400
                 text: "Visit KSquared,LLC"
@@ -79,7 +88,6 @@ Builder.load_string("""
                     webbrowser.open('https://kevinjunice.wixsite.com/ksquaredllc')
             Button:
                 font_size: 75
-                background_color: 0, 0 , 0 , 1
                 size_hint_y: None
                 height: 400
                 text: "Other apps from KSquared,LLC"
@@ -89,7 +97,6 @@ Builder.load_string("""
                 
             Button:
                 font_size: 75
-                background_color: 0, 0 , 0 , 1
                 size_hint_y: None
                 height: 400
                 text: "Donate to KSquared,LLC"
