@@ -20,27 +20,28 @@ Builder.load_string("""
             on_release:
                 app.root.current = "Menu"
                 root.manager.transition.direction = "left" 
-        
-        Button:
-            font_size: 50
-            background_color: 0, 0 , 0 , 1
-            size_hint_y: None
-            height: 200
-            text: "Fractions Calculator"
-            on_release:
-                app.root.current = "Menu"
-                root.manager.transition.direction = "left" 
                 
         Button:
             font_size: 50
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
-            text: "KSquared-math,LLC ©"
+            text: "Tap anywhere to continue"
+            on_release:
+                app.root.current = "Menu"
+                root.manager.transition.direction = "left"         
+                
+        Button:
+            font_size: 50
+            background_color: 0, 0 , 0 , 1
+            size_hint_y: None
+            height: 200
+            text: "KSquared-math,LLC © : Fractions Calculator"
             on_release:
                 app.root.current = "Menu"
                 root.manager.transition.direction = "left" 
 """)
+
 # Menu
 Builder.load_string("""
 <Menu>
@@ -68,7 +69,7 @@ Builder.load_string("""
                 text: "Menu"
             
             Button:
-                text: "Fractions Steps Calculator"   
+                text: "Fraction Steps Calculator"   
                 font_size: 75
                 background_color: 0, 0 , 1 , 1
                 size_hint_y: None
@@ -77,7 +78,18 @@ Builder.load_string("""
                 on_release:
                     app.root.current = "Fractions"
                     root.manager.transition.direction = "left" 
-                    
+            
+            Button:
+                text: "Fraction Converter"  
+                font_size: 75
+                background_color: 0, 1 , 1 , 1
+                size_hint_y: None
+                height: 200
+                padding: 10, 10
+                on_release:
+                    app.root.current = "Fractions_converter"
+                    root.manager.transition.direction = "left"         
+            
             Button:
                 font_size: 75
                 size_hint_y: None
@@ -165,6 +177,7 @@ Builder.load_string("""
                 text: "No new updates as of 1/26/2022"
             
 """)
+
 
 # Fractions Calculator
 Builder.load_string("""
@@ -2063,9 +2076,285 @@ class Fractions(Screen):
             self.layouts.append(layout)
 
 
+
+Builder.load_string("""
+<Fractions_converter>
+    id: Fractions_converter
+    name:"Fractions_converter"
+    ScrollView:
+        name: "Scroll"
+        do_scroll_x: False
+        do_scroll_y: True
+        
+        GridLayout:
+            cols: 1
+            padding:10
+            spacing:10
+            size_hint: 1, None
+            width:200
+            height: self.minimum_height
+            
+            Label:
+                text: "Fractions Converter"   
+                font_size: 75
+                size_hint_y: None
+                height: 200
+                padding: 10, 10
+                    
+            BoxLayout:
+                cols: 2
+                padding:10
+                spacing:10
+                size_hint: 1, None
+                width:300
+                size_hint_y: None
+                height: self.minimum_height 
+                
+                Button:
+                    font_size: 75
+                    size_hint_y: None
+                    height: 200
+                    background_color: 0, 0 , 1 , 1
+                    text: "Back"
+                    on_release:
+                        app.root.current = "Menu"
+                        root.manager.transition.direction = "right" 
+                        
+                Button:
+                    id: steps
+                    text: "Clear All"   
+                    font_size: 75
+                    size_hint_y: None
+                    background_color: 1, 0 , 0 , 1
+                    height: 200
+                    padding: 10, 10
+                    on_release:
+                        list_of_steps.clear_widgets()  
+                        Whole.text = ""
+                        Numerator.text = ""
+                        Denomenator.text = ""
+                    
+            BoxLayout:
+                cols: 2
+                id: steps
+                size_hint_y: None
+                height: self.minimum_height 
+                padding: 5,5         
+                
+                TextInput:
+                    id: Whole
+                    text: Whole.text
+                    hint_text: "Whole:"
+                    multiline: False
+                    font_size: 125
+                    size_hint_y: None
+                    height: 200
+                    padding: 10
+                    input_filter: lambda text, from_undo: text[:8 - len(Whole.text)] 
+            
+            BoxLayout:
+                cols: 2
+                id: steps
+                size_hint_y: None
+                height: self.minimum_height 
+                padding: 5,5         
+                
+                TextInput:
+                    id: Numerator
+                    text: Numerator.text
+                    hint_text: "Numerator"
+                    multiline: False
+                    font_size: 125
+                    size_hint_y: None
+                    height: 200
+                    padding: 10
+                    input_filter: lambda text, from_undo: text[:8 - len(Numerator.text)] 
+                    
+            BoxLayout:
+                cols: 2
+                id: steps
+                size_hint_y: None
+                height: self.minimum_height 
+                padding: 5,5         
+                
+                TextInput:
+                    id: Denomenator
+                    text: Denomenator.text
+                    hint_text: "Denomenator"
+                    multiline: False
+                    font_size: 125
+                    size_hint_y: None
+                    height: 200
+                    padding: 10
+                    input_filter: lambda text, from_undo: text[:8 - len(Denomenator.text)] 
+                    
+            Label:
+                size_hint_y: None
+                height: 200
+                text: "Convert To:"
+                font_size: 75
+                
+            BoxLayout:
+                cols: 2
+                id: steps
+                size_hint_y: None
+                height: self.minimum_height 
+                padding: 5,5         
+                         
+                Button:
+                    text: "Percent"   
+                    font_size: 75
+                    size_hint_y: None
+                    height: 200
+                    padding: 10, 10
+                    background_color: 0, 0 , 1 , 1
+                    on_release:
+                        list_of_steps.clear_widgets() 
+                        Fractions_converter.convert_frac_to_perc(Whole.text + "(" + Numerator.text + "/" + Denomenator.text + ")")
+                        
+                Button:
+                    id: steps
+                    text: "Decimal"   
+                    font_size: 75
+                    size_hint_y: None
+                    background_color: 0, 0 , 1 , 1
+                    height: 200
+                    padding: 10, 10
+                    on_release:
+                        list_of_steps.clear_widgets() 
+                        Fractions_converter.convert_frac_to_dec(Whole.text + "(" + Numerator.text + "/" + Denomenator.text + ")")
+                    
+            GridLayout:
+                id: list_of_steps
+                cols: 1
+                size_hint: 1, None
+                height: self.minimum_height            
+    
+""")
+
+class Fractions_converter(Screen):
+    sm = ScreenManager()
+
+    def __init__(self, **kwargs):
+        super(Fractions_converter, self).__init__(**kwargs)
+        Window.bind(on_keyboard=self._key_handler)
+
+    def _key_handler(self, instance, key, *args):
+        if key == 27:
+            self.set_previous_screen()
+            return True
+
+    def set_previous_screen(self):
+        if sm.current != "Homepage":
+            sm.transition.direction = 'right'
+            sm.current = sm.previous()
+            
+    layouts = []
+    def convert_frac_to_perc(self,entry):
+        print("entry ",entry)
+        layout = GridLayout(cols=1,size_hint_y= None)
+        try:
+            left_par_index = entry.find("(") 
+            whole = entry[:left_par_index] 
+            print("whole",whole)
+            frac_sign = entry.find("/")
+            numerator = entry[left_par_index+1:frac_sign]
+            print("numerator",numerator)
+            right_par_index = entry.find(")")
+            denomenator = entry[frac_sign+1:right_par_index]
+            print("denomenator",denomenator)
+            if numerator[0] != "-" and denomenator[0] != "-":
+                if numerator == "" and denomenator == "":
+                    numerator = 1
+                    denomenator = 1
+                if int(numerator) < int(denomenator):
+                    self.ids.list_of_steps.add_widget(Label(text= str(numerator).replace(".0","") , font_size = 75, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= str(whole).replace(".0","") + " " + "---" * len(denomenator) + "  " * len(str(whole)), font_size = 75, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= str(denomenator).replace(".0",""), font_size = 75, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= " to Percentage = ", font_size = 75, size_hint_y= None, height=100))
+                    self.layouts.append(layout)
+                    
+                    last_digits = str(int(numerator) / int(denomenator))
+                    print("last_digits",last_digits)
+                    if str(whole) != "":
+                        if str(whole)[0] != "-":
+                            percentage = str((float(whole) + float(last_digits)) * 100) + "%"
+                            print("percentage",percentage)
+                            self.ids.list_of_steps.add_widget(Label(text= percentage, font_size = 75, size_hint_y= None, height=100))
+                            self.layouts.append(layout)
+                        else:
+                            percentage = str((float(whole) - float(last_digits)) * 100) + "%"
+                            print("percentage",percentage)
+                            self.ids.list_of_steps.add_widget(Label(text= percentage, font_size = 75, size_hint_y= None, height=100))
+                            self.layouts.append(layout)
+                    else:
+                        percentage = str((float(last_digits)) * 100) + "%"
+                        print("percentage",percentage)
+                        self.ids.list_of_steps.add_widget(Label(text= percentage, font_size = 75, size_hint_y= None, height=100))
+                        self.layouts.append(layout)
+                    
+                elif int(numerator) == int(denomenator) or str(numerator) == str(denomenator):
+                    whole = str(int(whole) * 100) + "%"
+                    print("whole",whole)
+                    self.ids.list_of_steps.add_widget(Label(text= whole, font_size = 75, size_hint_y= None, height=100))
+                    self.layouts.append(layout)
+                else:
+                    self.ids.list_of_steps.add_widget(Label(text="Numerator exceeds Denomenator", font_size = 50, size_hint_y= None, height=100))
+                    self.layouts.append(layout)
+            else:
+                self.ids.list_of_steps.add_widget(Label(text="Invalid Input", font_size = 75, size_hint_y= None, height=100))
+                self.layouts.append(layout)
+        except Exception:
+            self.ids.list_of_steps.add_widget(Label(text="Invalid Input", font_size = 75, size_hint_y= None, height=100))
+            self.layouts.append(layout)
+            
+    def convert_frac_to_dec(self,entry):
+        print("entry ",entry)
+        layout = GridLayout(cols=1,size_hint_y= None)
+        try:
+            left_par_index = entry.find("(") 
+            whole = entry[:left_par_index] 
+            print("whole",whole)
+            frac_sign = entry.find("/")
+            numerator = entry[left_par_index+1:frac_sign]
+            print("numerator",numerator)
+            right_par_index = entry.find(")")
+            denomenator = entry[frac_sign+1:right_par_index]
+            print("denomenator",denomenator)
+            
+            if numerator[0] != "-" and denomenator[0] != "-":
+                if int(numerator) < int(denomenator):
+                    self.ids.list_of_steps.add_widget(Label(text= str(numerator), font_size = 75, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= str(whole)+ " " + "---" * len(numerator) + "  " * len(str(whole)), font_size = 75, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= str(denomenator), font_size = 75, size_hint_y= None, height=100))
+                    self.ids.list_of_steps.add_widget(Label(text= " to Decimal = ", font_size = 75, size_hint_y= None, height=100))
+                    self.layouts.append(layout)
+                    
+                    last_digits = str(int(numerator) / int(denomenator))
+                    print("last_digits",last_digits)
+                    period = last_digits.find(".")
+                    dec = last_digits[period+1:]
+                    
+                    decimal = str(whole) + "." + str(dec)
+                    print("decimal",decimal)
+                    if decimal.count(".") > 1:
+                        index = decimal.find(".")
+                        decimal = decimal[:index] + decimal[index+1:]
+                    self.ids.list_of_steps.add_widget(Label(text= decimal, font_size = 75, size_hint_y= None, height=100))
+                    self.layouts.append(layout)
+                else:
+                  self.ids.list_of_steps.add_widget(Label(text="Numerator exceeds Denomenator", font_size = 50, size_hint_y= None, height=100))
+                  self.layouts.append(layout)      
+            else:
+                  self.ids.list_of_steps.add_widget(Label(text="Invalid Input", font_size = 75, size_hint_y= None, height=100))
+                  self.layouts.append(layout)  
+        except Exception:
+            self.ids.list_of_steps.add_widget(Label(text="Invalid Input", font_size = 75, size_hint_y= None, height=100))
+            self.layouts.append(layout)  
+            
+
 class Homepage(Screen):
     pass            
-           
 
 class Menu(Screen):
     pass
@@ -2078,6 +2367,7 @@ sm.add_widget(Homepage(name="Homepage"))
 sm.add_widget(Menu(name="Menu"))   
 sm.add_widget(updates(name="updates"))
 sm.add_widget(Fractions(name="Fractions"))    
+sm.add_widget(Fractions_converter(name="Fractions_converter"))
 sm.current = "Homepage"   
 
 
