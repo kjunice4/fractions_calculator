@@ -364,7 +364,7 @@ class Fractions(Screen):
     def set_previous_screen(self):
         if sm.current != "Homepage":
             sm.transition.direction = 'right'
-            sm.current = sm.previous()
+            sm.current = "Menu"
             
     layouts = []
     def add(self,entry):
@@ -2247,7 +2247,7 @@ class Fractions_converter(Screen):
     def set_previous_screen(self):
         if sm.current != "Homepage":
             sm.transition.direction = 'right'
-            sm.current = sm.previous()
+            sm.current = "Menu"
             
     layouts = []
     def convert_frac_to_perc(self,entry):
