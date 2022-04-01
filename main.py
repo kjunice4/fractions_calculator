@@ -354,17 +354,6 @@ class Fractions(Screen):
 
     def __init__(self, **kwargs):
         super(Fractions, self).__init__(**kwargs)
-        Window.bind(on_keyboard=self._key_handler)
-
-    def _key_handler(self, instance, key, *args):
-        if key == 27:
-            self.set_previous_screen()
-            return True
-
-    def set_previous_screen(self):
-        if sm.current != "Homepage":
-            sm.transition.direction = 'right'
-            sm.current = "Menu"
             
     layouts = []
     def add(self,entry):
@@ -2237,17 +2226,6 @@ class Fractions_converter(Screen):
 
     def __init__(self, **kwargs):
         super(Fractions_converter, self).__init__(**kwargs)
-        Window.bind(on_keyboard=self._key_handler)
-
-    def _key_handler(self, instance, key, *args):
-        if key == 27:
-            self.set_previous_screen()
-            return True
-
-    def set_previous_screen(self):
-        if sm.current != "Homepage":
-            sm.transition.direction = 'right'
-            sm.current = "Menu"
             
     layouts = []
     def convert_frac_to_perc(self,entry):
@@ -2372,6 +2350,16 @@ sm.current = "Homepage"
 
 
 class Fractions(App):
+    def __init__(self, **kwargs):
+        super(Fractions, self).__init__(**kwargs)
+        Window.bind(on_keyboard=self._key_handler)
+    
+    def _key_handler(self, instance, key, *args):
+        print("key:",key)
+        if key == 27:
+            sm.current = sm.current
+            return True
+    
     def build(app):
         return sm
 
