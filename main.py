@@ -835,7 +835,7 @@ class Fractions(Screen):
                     self.ids.list_of_steps.add_widget(Label(text= answer ,font_size = 50, size_hint_y= None, height=100))
                     self.layouts.append(layout)
                 else:
-                    numer_sub = str(int(numer_b) - int(numer_a)).replace(".0","")
+                    numer_sub = str(int(numer_a) - int(numer_b)).replace(".0","")
                     answer = numer_sub + "/" + str(lcm)
                     self.ids.list_of_steps.add_widget(Label(text= answer ,font_size = 50, size_hint_y= None, height=100))
                     self.layouts.append(layout)
