@@ -22,7 +22,7 @@ Builder.load_string("""
                 root.manager.transition.direction = "left" 
                 
         Button:
-            font_size: 50
+            font_size: '20sp'
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
@@ -32,7 +32,7 @@ Builder.load_string("""
                 root.manager.transition.direction = "left"         
                 
         Button:
-            font_size: 50
+            font_size: '20sp'
             background_color: 0, 0 , 0 , 1
             size_hint_y: None
             height: 200
@@ -62,7 +62,7 @@ Builder.load_string("""
             height: self.minimum_height
             
             Label:
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -70,7 +70,7 @@ Builder.load_string("""
             
             Button:
                 text: "Fraction Steps Calculator"   
-                font_size: 75
+                font_size: '20sp'
                 background_color: 0, 0 , 1 , 1
                 size_hint_y: None
                 height: 200
@@ -81,7 +81,7 @@ Builder.load_string("""
             
             Button:
                 text: "Fraction Converter"  
-                font_size: 75
+                font_size: '20sp'
                 background_color: 0, 1 , 1 , 1
                 size_hint_y: None
                 height: 200
@@ -91,7 +91,7 @@ Builder.load_string("""
                     root.manager.transition.direction = "left"         
             
             Button:
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -101,7 +101,7 @@ Builder.load_string("""
                     webbrowser.open('https://www.ksquaredmathematics.com/subscribe') 
             
             Button:
-                font_size: 75
+                font_size: '20sp'
                 background_color: 1, 0, 1, 1
                 size_hint_y: None
                 height: 200
@@ -112,7 +112,7 @@ Builder.load_string("""
                     root.manager.transition.direction = "left"
                     
             Label:
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -121,8 +121,8 @@ Builder.load_string("""
             Image:
                 source: 'KSquared_QR.png'
                 size_hint_y: None
-                height: 1000
-                width: 1000
+                height: 800
+                width: 800
 """)
 
 #Updates
@@ -145,7 +145,7 @@ Builder.load_string("""
             height: self.minimum_height
             
             Label:
-                font_size: 60
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
@@ -154,7 +154,7 @@ Builder.load_string("""
             Button:
                 id: steps
                 text: "Menu"   
-                font_size: 75
+                font_size: '20sp'
                 size_hint_y: None
                 background_color: 0, 0 , 1 , 1
                 height: 200
@@ -164,14 +164,14 @@ Builder.load_string("""
                     root.manager.transition.direction = "right" 
                     
             Label:
-                font_size: 40
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
                 text: "Fractions Calculator v0.1"
                 
             Label:
-                font_size: 40
+                font_size: '20sp'
                 size_hint_y: None
                 height: 200
                 padding: 10, 10
